@@ -21,28 +21,6 @@ Bible data API (e.g., Bible API, OpenBible, etc. – adjust according to your ca
 
 Logic for verse connection and comparison
 
-🚀 How to Contribute
-Want to help improve or add new features?
-
-Fork this repository
-
-Create a branch (git checkout -b new-feature)
-
-Commit your changes (git commit -m 'My contribution')
-
-Push to the branch (git push origin new-feature)
-
-Open a Pull Request
-
-📌 Roadmap for Future Improvements
-✅ Basic online version
-
-⬜️ Keyword search implementation
-
-⬜️ More personalized interface with themes
-
-⬜️ Integration with other Bible versions (NIV, ESV, etc.)
-
 🛡️ License
 This project is licensed under the MIT License.
 
