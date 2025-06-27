@@ -23,7 +23,7 @@ app.post("/perguntar", async (req, res) => {
 
   try {
     const chatResponse = await openai.chat.completions.create({
-      model: "openrouter/openai/gpt-3.5-turbo",
+      model: "openai/gpt-4o",
       messages: [
         {
           role: "system",
