@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         chatBox.appendChild(digitandoEl);
 
         try {
-            const response = await fetch("https://bible-chat-10.onrender.com", {
+            const response = await fetch("https://bible-chat-11.onrender.com/perguntar", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ pergunta })
