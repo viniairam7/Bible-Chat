@@ -5,10 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function adicionarMensagem(texto, tipo) {
         const mensagemDiv = document.createElement("div");
-        mensagemDiv.classList.add("mensagem", tipo); // tipo: 'usuario' ou 'bot'
+        mensagemDiv.classList.add("mensagem", tipo); // tipo: 'user' ou 'bot'
         mensagemDiv.innerText = texto;
         chatBox.appendChild(mensagemDiv);
-        chatBox.scrollTop = chatBox.scrollHeight; // rolar para a última mensagem
+        chatBox.scrollTop = chatBox.scrollHeight;
     }
 
     enviarBtn.addEventListener("click", async () => {
@@ -18,12 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        adicionarMensagem(pergunta, "usuario");
+        adicionarMensagem(pergunta, "user");
         duvidaInput.value = "";
-        adicionarMensagem("Digitando...", "bot");
+
+        const digitandoEl = document.createElement("div");
+        digitandoEl.classList.add("mensagem", "bot");
+        digitandoEl.innerText = "Digitando...";
+        chatBox.appendChild(digitandoEl);
 
         try {
-            const response = await fetch("https://bible-chat-9.onrender.com/pergunta", {
+            const response = await fetch("https://bible-chat-9.onrender.com/perguntar", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ pergunta })
@@ -31,15 +35,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const data = await response.json();
 
-            // Remove o "Pensando..."
-            const pensando = chatBox.querySelector(".bot:last-child");
-            if (pensando && pensando.innerText === "Digitando...") {
-                chatBox.removeChild(pensando);
-            }
+            // Remove o "Digitando..."
+            chatBox.removeChild(digitandoEl);
 
             adicionarMensagem(data.resposta || "Sem resposta recebida.", "bot");
 
         } catch (error) {
+            chatBox.removeChild(digitandoEl);
             adicionarMensagem("Erro ao buscar resposta.", "bot");
             console.error("Erro:", error);
         }
