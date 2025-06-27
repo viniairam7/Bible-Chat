@@ -83,15 +83,15 @@ textarea::placeholder {
 }
 
 button {
-    width: 80px;
-    height: 80px;
+    width: 65px;
+    height: 65px;
     background-color: #ff8c00;
     border: none;
-    border-radius: 15px;
-    font-size: 1.3rem;
+    border-radius: 50%;
     cursor: pointer;
-    color: black;
-    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     box-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
     transition: background-color 0.3s, transform 0.2s;
 }
@@ -99,6 +99,10 @@ button {
 button:hover {
     background-color: #ffa733;
     transform: scale(1.05);
+}
+
+button svg {
+    fill: black;
 }
 
 .botao-resumos {
