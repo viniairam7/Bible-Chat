@@ -13,7 +13,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENROUTER_API_KEY,
   baseURL: "https://openrouter.ai/api/v1",
   defaultHeaders: {
-    "HTTP-Referer": "https://bible-chat-11.onrender.com/perguntar", // Atualize para seu domínio
+    "HTTP-Referer": "https://bible-chat-11.onrender.com", // apenas o domínio
     "X-Title": "Airam Chat Bíblico"
   }
 });
@@ -23,7 +23,7 @@ app.post("/perguntar", async (req, res) => {
 
   try {
     const chatResponse = await openai.chat.completions.create({
-      model: "openai/gpt-3.5.turbo",
+      model: "openai/gpt-3.5-turbo",
       messages: [
         {
           role: "system",
@@ -45,5 +45,6 @@ app.post("/perguntar", async (req, res) => {
 });
 
 const PORT = process.env.PORT;
-
+app.listen(PORT, () => {
+  console.log(`✅ Servidor rodando na porta ${PORT}`);
 });
