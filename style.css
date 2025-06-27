@@ -4,18 +4,17 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background: linear-gradient(to bottom right, #4b0082, #000000, #ff8c00);
+    background: linear-gradient(to bottom right, #1e1e1e, #2c003e, #1e1e1e);
     color: white;
-    font-family: Arial, sans-serif;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    font-family: 'Segoe UI', sans-serif;
     padding: 20px;
     box-sizing: border-box;
 }
 
 h1 {
-    font-size: 3rem;
-    margin: 0 0 20px 0;
-    animation: fadeIn 2s ease-in-out;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    animation: fadeIn 1.5s ease-in-out;
     color: #ffffff;
 }
 
@@ -33,16 +32,16 @@ h1 {
     width: 100%;
     height: 60vh;
     overflow-y: auto;
-    background-color: #1e1e1e;
+    background-color: #2a2a2a;
     padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px #00000055;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
 .mensagem {
     margin: 10px 0;
-    padding: 10px 15px;
-    border-radius: 10px;
+    padding: 12px 18px;
+    border-radius: 12px;
     max-width: 80%;
     word-wrap: break-word;
 }
@@ -54,7 +53,7 @@ h1 {
 
 .bot {
     align-self: flex-start;
-    background-color: #2c003e;
+    background-color: #3b004f;
 }
 
 .input-area {
@@ -63,8 +62,7 @@ h1 {
     justify-content: space-between;
     width: 100%;
     max-width: 800px;
-    margin-top: 20px;
-    gap: 12px;
+    gap: 10px;
 }
 
 textarea {
@@ -75,32 +73,33 @@ textarea {
     border-radius: 12px;
     border: none;
     resize: none;
-    background-color: #2c003e;
+    background-color: #1e1e1e;
     color: white;
-    box-shadow: 0 0 10px #000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
-
 textarea::placeholder {
-    color: #aaaaaa;
+    color: #888;
 }
 
 button {
-    padding: 10px 20px;
-    font-size: 1rem;
+    width: 80px;
+    height: 80px;
     background-color: #ff8c00;
     border: none;
-    border-radius: 10px;
+    border-radius: 15px;
+    font-size: 1.3rem;
     cursor: pointer;
-    color: #000;
-    transition: background-color 0.3s;
-    height: 45px;
+    color: black;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 button:hover {
     background-color: #ffa733;
+    transform: scale(1.05);
 }
-
 
 .botao-resumos {
     display: inline-block;
@@ -124,19 +123,18 @@ button:hover {
     transform: scale(1.05);
 }
 
-
 #creditos {
     margin-top: 30px;
     font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.3);
     font-style: italic;
     text-align: center;
     max-width: 800px;
     line-height: 1.4;
+    user-select: none;
 }
 
-
 @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
+    from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
 }
