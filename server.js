@@ -13,7 +13,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENROUTER_API_KEY,
   baseURL: "https://openrouter.ai/api/v1",
   defaultHeaders: {
-    "HTTP-Referer": "https://bible-chat-10.onrender.com/pergunta", // Atualize para seu domínio
+    "HTTP-Referer": "https://bible-chat-11.onrender.com/perguntar", // Atualize para seu domínio
     "X-Title": "Airam Chat Bíblico"
   }
 });
