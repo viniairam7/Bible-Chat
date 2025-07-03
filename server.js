@@ -13,8 +13,8 @@ const openai = new OpenAI({
   apiKey: process.env.OPENROUTER_API_KEY,
   baseURL: "https://openrouter.ai/api/v1",
   defaultHeaders: {
-    "HTTP-Referer": "https://stella-1yyt.onrender.com", // apenas o domínio
-    "X-Title": "Stella"
+    "HTTP-Referer": "https://bible-chat-11.onrender.com", // apenas o domínio
+    "X-Title": "Airam Chat Bíblico"
   }
 });
 
@@ -28,7 +28,7 @@ app.post("/perguntar", async (req, res) => {
         {
           role: "system",
           content:
-            "Você é uma professora de ingl~es da Star Idiomas. Deve ouvir o usuário, tirar dúvidas e ensinar a falar corretamente em inglês."
+            "Você é um assistente bíblico. Responda com base na Bíblia Sagrada Evangélica, versão NVI. Responda informando conexões bíblicas e direcionando para versículos."
         },
         { role: "user", content: pergunta }
       ],
