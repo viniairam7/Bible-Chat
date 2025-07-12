@@ -22,9 +22,9 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
-    max-width: 600px;
-    height: 60vh;
+    width: 90%;
+    max-width: 700px;
+    height: 70vh;
     flex-grow: 1;
     gap: 10px;
 }
@@ -127,6 +127,7 @@ button svg {
 /* Botão de resumos PDF */
 .botao-resumos {
     display: inline-block;
+    align-items: center;
     padding: 12px 30px;
     font-size: 1.1rem;
     background-color: #ff8c00;
