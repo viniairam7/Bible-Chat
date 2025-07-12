@@ -126,7 +126,7 @@ button svg {
 
 /* Botão de resumos PDF */
 .botao-resumos {
-    display: inline-block;
+    display: flex;
     align-items: center;
     padding: 12px 30px;
     font-size: 1.1rem;
