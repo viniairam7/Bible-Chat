@@ -24,9 +24,9 @@ h1 {
     align-items: center;
     width: 90%;
     max-width: 700px;
-    height: 70vh;
+    height: 80vh;
     flex-grow: 1;
-    gap: 10px;
+    gap: 15px;
 }
 
 .mensagens-chat {
