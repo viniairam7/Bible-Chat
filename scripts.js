@@ -46,4 +46,19 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Erro:", error);
         }
     });
+// Novo: Listener para o botão de gerar PDF
+    gerarPdfBtn.addEventListener("click", () => {
+        const element = document.getElementById('chatBox'); // O elemento que você quer converter para PDF
+
+        // Opções para a geração do PDF
+        const options = {
+            margin: 1,
+            filename: 'conversa_bible_chat.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+
+        html2pdf().from(element).set(options).save();
+    });
 });
