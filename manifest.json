@@ -1,0 +1,11 @@
+// manifest.json
+{
+  "name": "Airam Bible Chat",
+  "short_name": "Bible Chat",
+  "description": "Receba respostas com referências bíblicas para suas perguntas.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1e1e1e",
+  "theme_color": "#4b0082",
+ 
+}
