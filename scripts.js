@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+   // Listener para o botão de gerar PDF
    gerarPdfBtn.addEventListener("click", () => {
         const element = document.getElementById('chatBox'); // O elemento que você quer converter para PDF
 
@@ -89,12 +90,4 @@ document.addEventListener("DOMContentLoaded", () => {
             element.scrollLeft = scrollLeft;
         });
     });
-        // Verifica se o chatBox tem conteúdo antes de gerar o PDF
-        if (element.children.length === 0) {
-            alert("Não há conversas para gerar o PDF. Inicie um chat primeiro!");
-            return;
-        }
-
-        html2pdf().from(element).set(options).save();
-    });
-});
+}); 
