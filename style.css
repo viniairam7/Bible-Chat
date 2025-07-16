@@ -165,3 +165,18 @@ button svg {
     from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
 }
+
+
+/* Estilo para o novo botão de PDF */
+#gerarPdf {
+    background-color: #007bff; /* Ou a cor que preferir, como um verde ou azul */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+#gerarPdf:hover {
+    background-color: #0056b3;
+}
+
+#gerarPdf svg {
+    fill: white; /* Mude a cor do ícone se o fundo for azul */
+}
