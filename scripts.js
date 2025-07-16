@@ -49,19 +49,46 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Listener para o botão de gerar PDF
-    gerarPdfBtn.addEventListener("click", () => {
+   gerarPdfBtn.addEventListener("click", () => {
         const element = document.getElementById('chatBox'); // O elemento que você quer converter para PDF
+
+        // Verifica se o chatBox tem conteúdo antes de gerar o PDF
+        if (element.children.length === 0) {
+            alert("Não há conversas para gerar o PDF. Inicie um chat primeiro!");
+            return;
+        }
+
+        // SALVE AS POSIÇÕES DE SCROLL ATUAIS PARA RESTAURAR DEPOIS
+        const scrollTop = element.scrollTop;
+        const scrollLeft = element.scrollLeft;
+
+        // Temporariamente ajuste o scroll para o topo para garantir que html2canvas comece de cima
+        element.scrollTop = 0;
+        element.scrollLeft = 0;
 
         // Opções para a geração do PDF
         const options = {
             margin: 1,
             filename: 'conversa_bible_chat.pdf',
             image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2 },
+            html2canvas: {
+                scale: 2, // Aumenta a resolução da captura para melhor qualidade
+                logging: true, // Para depuração, mostra logs no console
+                useCORS: true, // Importante se houver imagens de outras origens
+                // As seguintes opções podem ajudar a capturar todo o conteúdo
+                width: element.scrollWidth, // Largura total do conteúdo
+                height: element.scrollHeight // Altura total do conteúdo rolável
+            },
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
         };
 
+        // Usa html2pdf
+        html2pdf().from(element).set(options).save().then(() => {
+            // RESTAURE AS POSIÇÕES DE SCROLL APÓS A GERAÇÃO DO PDF
+            element.scrollTop = scrollTop;
+            element.scrollLeft = scrollLeft;
+        });
+    });
         // Verifica se o chatBox tem conteúdo antes de gerar o PDF
         if (element.children.length === 0) {
             alert("Não há conversas para gerar o PDF. Inicie um chat primeiro!");
