@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const enviarBtn = document.getElementById("enviar");
     const duvidaInput = document.getElementById("duvida");
     const chatBox = document.getElementById("chatBox");
+    const gerarPdfBtn = document.getElementById("gerarPdf"); // <-- Mova esta linha para cá
 
     function adicionarMensagem(texto, tipo) {
         const mensagemDiv = document.createElement("div");
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         digitandoEl.classList.add("mensagem", "bot");
         digitandoEl.innerText = "Digitando...";
         chatBox.appendChild(digitandoEl);
+        chatBox.scrollTop = chatBox.scrollHeight; // Adicionado para rolar ao mostrar "Digitando..."
 
         try {
             const response = await fetch("https://bible-chat-11.onrender.com/perguntar", {
@@ -46,7 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Erro:", error);
         }
     });
-// Novo: Listener para o botão de gerar PDF
+
+    // Listener para o botão de gerar PDF
     gerarPdfBtn.addEventListener("click", () => {
         const element = document.getElementById('chatBox'); // O elemento que você quer converter para PDF
 
@@ -58,6 +61,12 @@ document.addEventListener("DOMContentLoaded", () => {
             html2canvas: { scale: 2 },
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
         };
+
+        // Verifica se o chatBox tem conteúdo antes de gerar o PDF
+        if (element.children.length === 0) {
+            alert("Não há conversas para gerar o PDF. Inicie um chat primeiro!");
+            return;
+        }
 
         html2pdf().from(element).set(options).save();
     });
