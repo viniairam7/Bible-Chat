@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Airam Bible Chat</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json"> <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
   
@@ -21,19 +22,35 @@
   </div>
   <div class="chat-container">
     <div id="chatBox" class="mensagens-chat">
-      <!-- As mensagens aparecem aqui -->
-    </div>
+      </div>
 
     <div class="input-area">
       <textarea id="duvida" placeholder="Digite sua dúvida bíblica aqui:"></textarea>
+      <button id="gerarPdf" title="Salvar Conversa como PDF">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="black" viewBox="0 0 24 24">
+          <path d="M19 12v7H5V5h12V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 2v-3h-2v3H8l4 4 4-4h-3z"/>
+        </svg>
+      </button>
      <button id="enviar">
   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="black" viewBox="0 0 24 24">
     <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
   </svg>
 </button>
+    </div>
 
   <script src="scripts.js"></script>
-
-
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('Service Worker registrado com sucesso:', registration);
+          })
+          .catch(error => {
+            console.error('Falha ao registrar o Service Worker:', error);
+          });
+      });
+    }
+  </script>
 </body>
 </html>
