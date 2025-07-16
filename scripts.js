@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const enviarBtn = document.getElementById("enviar");
     const duvidaInput = document.getElementById("duvida");
     const chatBox = document.getElementById("chatBox");
-    const gerarPdfBtn = document.getElementById("gerarPdf"); // <-- Mova esta linha para cá
+    const gerarPdfBtn = document.getElementById("gerarPdf"); // A variável agora está declarada no escopo correto
 
     function adicionarMensagem(texto, tipo) {
         const mensagemDiv = document.createElement("div");
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         digitandoEl.classList.add("mensagem", "bot");
         digitandoEl.innerText = "Digitando...";
         chatBox.appendChild(digitandoEl);
-        chatBox.scrollTop = chatBox.scrollHeight; // Adicionado para rolar ao mostrar "Digitando..."
+        chatBox.scrollTop = chatBox.scrollHeight;
 
         try {
             const response = await fetch("https://bible-chat-11.onrender.com/perguntar", {
