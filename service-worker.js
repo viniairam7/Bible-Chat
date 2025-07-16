@@ -1,4 +1,3 @@
-// service-worker.js
 const CACHE_NAME = 'bible-chat-cache-v1';
 const urlsToCache = [
     '/',
@@ -6,6 +5,8 @@ const urlsToCache = [
     '/style.css',
     '/scripts.js',
     '/manifest.json',
+    '/icons/icon-192x192.png', // Adicionado para cache dos ícones
+    '/icons/icon-512x512.png'  // Adicionado para cache dos ícones
 ];
 
 self.addEventListener('install', event => {
