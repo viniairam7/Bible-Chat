@@ -71,20 +71,20 @@ h1 {
     border-bottom-left-radius: 0;
 }
 
-/* Área de entrada */
+/* Área de entrada - MODIFICADO */
 .input-area {
-    display: flex;
-    align-items: center;
+    display: flex; /* Agora flexbox */
+    align-items: flex-end; /* Alinha os itens à base, para o textarea e botões ficarem alinhados */
     justify-content: space-between;
     width: 100%;
     max-width: 800px;
-    gap: 10px;
-    margin-bottom: 30px; /* Afastamento do rodapé */
+    gap: 10px; /* Espaçamento entre o textarea e o grupo de botões */
+    margin-bottom: 30px;
 }
 
 /* Campo de texto */
 textarea {
-    flex: 1;
+    flex: 1; /* Ocupa o espaço disponível */
     height: 80px;
     font-size: 1.1rem;
     padding: 15px;
@@ -100,10 +100,18 @@ textarea::placeholder {
     color: #888;
 }
 
-/* Botão de envio redondo com ícone */
+/* Contêiner para os botões de PDF e Enviar - NOVO */
+.button-group {
+    display: flex;
+    flex-direction: column; /* Empilha os botões verticalmente */
+    gap: 5px; /* Espaço entre os botões */
+    align-items: center; /* Centraliza os botões dentro do grupo */
+}
+
+/* Botão padrão para envio e PDF - TAMANHO REDUZIDO */
 button {
-    width: 65px;
-    height: 65px;
+    width: 45px; /* Diminuído para 45px */
+    height: 45px; /* Diminuído para 45px */
     background-color: #ff8c00;
     border: none;
     border-radius: 50%;
@@ -122,9 +130,25 @@ button:hover {
 
 button svg {
     fill: black;
+    width: 24px; /* Ajusta o tamanho do ícone para o botão menor */
+    height: 24px; /* Ajusta o tamanho do ícone para o botão menor */
 }
 
-/* Botão de resumos PDF */
+/* Estilo para o botão de PDF específico */
+#gerarPdf {
+    background-color: #007bff; /* Cor azul para o PDF */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+#gerarPdf:hover {
+    background-color: #0056b3;
+}
+
+#gerarPdf svg {
+    fill: white; /* Mude a cor do ícone se o fundo for azul */
+}
+
+/* Botão de resumos PDF (aquele maior em cima do chat) */
 .botao-resumos {
     display: flex;
     align-items: center;
@@ -165,19 +189,4 @@ button svg {
 @keyframes fadeIn {
     from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
-}
-
-
-/* Estilo para o novo botão de PDF */
-#gerarPdf {
-    background-color: #007bff; /* Ou a cor que preferir, como um verde ou azul */
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-}
-
-#gerarPdf:hover {
-    background-color: #0056b3;
-}
-
-#gerarPdf svg {
-    fill: white; /* Mude a cor do ícone se o fundo for azul */
 }
