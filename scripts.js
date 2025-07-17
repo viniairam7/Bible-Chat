@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const enviarBtn = document.getElementById("enviar");
     const duvidaInput = document.getElementById("duvida");
     const chatBox = document.getElementById("chatBox");
-    const gerarPdfBtn = document.getElementById("gerarPdf"); // A variável agora está declarada no escopo correto
+    const gerarPdfBtn = document.getElementById("gerarPdf");
 
     function adicionarMensagem(texto, tipo) {
         const mensagemDiv = document.createElement("div");
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
    // Listener para o botão de gerar PDF
    gerarPdfBtn.addEventListener("click", () => {
-        const element = document.getElementById('chatBox'); // O elemento que você quer converter para PDF
+        const element = document.getElementById('chatBox'); 
 
         // Verifica se o chatBox tem conteúdo antes de gerar o PDF
         if (element.children.length === 0) {
@@ -59,35 +59,36 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // SALVE AS POSIÇÕES DE SCROLL ATUAIS PARA RESTAURAR DEPOIS
-        const scrollTop = element.scrollTop;
-        const scrollLeft = element.scrollLeft;
+        // Inicializa jsPDF
+        const doc = new jsPDF();
+        let yPos = 10; // Posição Y inicial para o texto
 
-        // Temporariamente ajuste o scroll para o topo para garantir que html2canvas comece de cima
-        element.scrollTop = 0;
-        element.scrollLeft = 0;
+        doc.setFontSize(12);
+        doc.text("Conversa do Bible Chat", 10, yPos); // Título
+        yPos += 10;
 
-        // Opções para a geração do PDF
-        const options = {
-            margin: 1,
-            filename: 'conversa_bible_chat.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: {
-                scale: 2, // Aumenta a resolução da captura para melhor qualidade
-                logging: true, // Para depuração, mostra logs no console
-                useCORS: true, // Importante se houver imagens de outras origens
-                // As seguintes opções podem ajudar a capturar todo o conteúdo
-                width: element.scrollWidth, // Largura total do conteúdo
-                height: element.scrollHeight // Altura total do conteúdo rolável
-            },
-            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-        };
+        // Itera sobre as mensagens no chatBox
+        const mensagens = element.querySelectorAll('.mensagem');
+        mensagens.forEach(mensagem => {
+            const tipo = mensagem.classList.contains('user') ? 'Você: ' : 'Bot: ';
+            const texto = tipo + mensagem.innerText;
 
-        // Usa html2pdf
-        html2pdf().from(element).set(options).save().then(() => {
-            // RESTAURE AS POSIÇÕES DE SCROLL APÓS A GERAÇÃO DO PDF
-            element.scrollTop = scrollTop;
-            element.scrollLeft = scrollLeft;
+            // Divide o texto em linhas para caber na largura da página
+            const splitText = doc.splitTextToSize(texto, 180); // 180 é a largura máxima da linha
+
+            // Adiciona cada linha do texto
+            splitText.forEach(line => {
+                if (yPos > 280) { // Se a posição Y exceder o limite da página, adicione uma nova página
+                    doc.addPage();
+                    yPos = 10; // Reinicia a posição Y na nova página
+                }
+                doc.text(line, 10, yPos);
+                yPos += 7; // Incrementa a posição Y para a próxima linha
+            });
+            yPos += 5; // Espaço extra entre as mensagens
         });
+
+        // Salva o PDF
+        doc.save('conversa_bible_chat.pdf');
     });
-}); 
+});
